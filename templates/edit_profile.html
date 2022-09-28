@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="jumbotron">
+    <h1>Edit Profile {{user.username}}</h1>
+  <form  method="POST" action="" enctype="multipart/form-data">
+    {{ form.hidden_tag() }}
+    <div class="form-group">
+        <pre>{{ form.username.label() }}   : {{form.username()  }}</pre>
+    </div>
+    <div class="form-group">
+        <pre>{{ form.email.label() }}     : {{form.email()  }}</pre>
+    </div>
+    <div class="form-group">
+        <pre>{{ form.about.label() }}           : {{form.about()  }}</pre>
+    </div>
+    <div class="form-group">
+        <pre>{{ form.photo.label(class="form-group") }} : {{ form.photo(class="form-control-file") }}</pre>
+    </div>
+    <div class="form-group">
+        {{ form.submit(class="btn btn-primary") }}
+    </div>
+  </form>
+
+</div>
+
+{% endblock content %}

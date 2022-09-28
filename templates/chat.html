@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<p>Fill the form below to send a message:</p>
+  <form method="POST">
+      {{ form.hidden_tag() }}
+      <p>{{ form.body.label }} {{ form.body() }}</p>
+      <p>{{ form.submit() }}</p>
+  </form>
+{% for chat in all_chat %}
+<p>{{all_user.get(chat.from_user_id).username}} said: {{chat.message}}</p>
+<p>{{chat.timestamp}}</p>
+{% endfor %}
+{% endblock %}

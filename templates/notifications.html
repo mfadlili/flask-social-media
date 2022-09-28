@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Notifications</h1>
+{% for message in messages %}
+<p><a href="{{url_for('chat', receiver_id=message.from_user_id)}}">You have new message from {{all_user.get(message.from_user_id).username}}</a></p>
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>Edit Post: {{post.title}}</h1>
+  <form  method="POST" action="" enctype="multipart/form-data">
+    {{ form.hidden_tag() }}
+    <div class="form-group">
+        <pre>{{ form.title.label() }}   : {{form.title()  }}</pre>
+    </div>
+    <div class="form-group">
+        <pre>{{ form.body.label() }}     : {{form.body()  }}</pre>
+    </div>
+    <div class="form-group">
+        {{ form.post(class="btn btn-primary") }}
+    </div>
+</form>
+{% endblock content %}
