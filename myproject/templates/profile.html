@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Profile</h1>
+<table>
+    <tr valign="top">
+        <td><img src="{{url_for('static', filename='profile_pic/' + user.photo)}}"></td>
+        <td>
+            <h5><pre> Username  : {{user.username }}</pre></h5>
+            <h5><pre> About  : {{user.about }}</pre></h5>
+            <h5><pre> Follower  : <a href="{{ url_for('users.follower_list', user_id=user.id) }}">{{ num_follower }}</a></pre></h5>
+            <h5><pre> Following  : <a href="{{ url_for('users.following_list', user_id=user.id) }}">{{ num_followed }}</a></pre></h5>
+            <h5><pre> Last seen on {{ user.last_seen }}.</pre></h5>
+            {% if user == current_user %}
+            <h5><pre> <a href="{{ url_for('users.edit_profile') }}">Edit Profile</a></pre></h5>
+            {% endif %}
+            {% if current_user.is_authenticated%}
+            {% if user != current_user  %}
+            <h5><pre> <a href="{{ url_for('chats.chat', receiver_id=user.id) }}">Chat</a></pre></h5>
+            {% if user not in current_user.followed %}
+            <h5><pre> <a href="{{ url_for('users.follow', user_id=user.id) }}">Follow</a></pre></h5>
+            {% elif user in current_user.followed %}
+            <h5><pre> <a href="{{ url_for('users.unfollow', user_id=user.id) }}">Unfollow</a></pre></h5>
+            {% endif %}
+            {% endif %}
+            {% endif %}
+        </td>
+    </tr>
+</table>
+<h1>     </h1>
+{% if posts %}
+<h1>My Posts</h1>
+<ol>
+{% for post in posts.items%}
+<li><a href="{{url_for('posts.view', post_id=post.id)}}">{{post.title}}</a></li>
+{% endfor %}
+</ol>
+{% if prev_url%}
+<a href="{{prev_url}}">prev</a>
+{% endif %}
+{% if next_url%}
+<a href="{{next_url}}">next</a>
+{% endif %}
+{% endif %}
+{% endblock %}

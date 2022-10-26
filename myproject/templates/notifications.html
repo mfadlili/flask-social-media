@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Notifications</h1>
+<ol>
+{% for message in messages.items %}
+<li>
+<p><a href="{{url_for('chats.chat', receiver_id=message.from_user_id)}}">You have new message from {{all_user.get(message.from_user_id).username}}</a></p>
+<p>sent on {{message.timestamp}}</p>
+</li>
+{% endfor %}
+</ol>
+{% if prev_url%}
+  <a href="{{prev_url}}">prev</a>
+  {% endif %}
+  {% if next_url%}
+  <a href="{{next_url}}">next</a>
+  {% endif %}
+{% endblock %}

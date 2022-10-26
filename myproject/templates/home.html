@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+{% if current_user.is_authenticated  %}
+  <h1>Welcome {{current_user.username}}</h1>
+  <p>Please select one of the links from the nav bar.</p>
+  <h3>What's Happen?</h3>
+  <ol>
+  {% for post in posts.items %}
+  <li><a href="{{url_for('posts.view', post_id=post.id)}}">{{ post.title }}</a> by <a href="{{url_for('users.profile', id=post.user_id)}}">{{all_user.get(post.user_id).username}}</a></li>
+  {% endfor %}
+  </ol>
+  {% if prev_url%}
+  <a href="{{prev_url}}">prev</a>
+  {% endif %}
+  {% if next_url%}
+  <a href="{{next_url}}">next</a>
+  {% endif %}
+{% else %}
+  <h1>Welcome</h1>
+  <p>Please select one of the links from the nav bar.</p>
+{% endif %}
+
+{% endblock %}
