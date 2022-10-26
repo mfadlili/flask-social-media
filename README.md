@@ -31,7 +31,7 @@ git clone git@github.com:mfadlili/flask-project.git
 
 Change the directory on cmd to the repository folder and run this command to install the dependencies:
 ```sh
-cd .\flask-project
+cd .\flask-social-media
 pip install -r requirements.txt
 ```
 
