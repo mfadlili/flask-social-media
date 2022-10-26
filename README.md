@@ -1,4 +1,4 @@
-# flask-project
+# Flask Social Media
 
 ## Deployment
 This project was deployed to Heroku. You can click this [link] to see it.
